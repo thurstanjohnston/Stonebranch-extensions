@@ -1,50 +1,10 @@
 extension:
   name: ue-awx
   version: 1.0.0
-  description: Launch, monitor and review Ansible AWX / AAP job templates and workflows via the REST API
-  extension_name: AWX
-  extension_icon: awx.png
-  extension_type: Python
-  extension_api_version: 1
-
-template:
-  name: Ansible AWX
-  display_name: Ansible AWX
-  description: Launch, monitor and review Ansible AWX playbooks (job templates and workflows)
-  fields:
-    - {name: action, label: Action, type: choice, required: true, default: launch_job_template,
-       choices: [launch_job_template, launch_workflow, monitor_job, review_job]}
-    - {name: awx_url, label: AWX URL, type: text, required: true,
-       help: "Base URL, e.g. https://awx.example.com"}
-    - {name: credentials, label: AWX Credentials, type: credentials, required: true,
-       help: "Runtime credentials. User+Password = basic auth; empty User + Password = OAuth2 token."}
-    - {name: verify_ssl, label: Verify SSL, type: boolean, default: true}
-    - {name: request_timeout, label: Request Timeout (s), type: integer, default: 60}
-
-    # launch actions
-    - {name: template, label: Template Name or ID, type: text,
-       visible_when: "action in [launch_job_template, launch_workflow]"}
-    - {name: extra_vars, label: Extra Vars (JSON or YAML), type: textarea,
-       visible_when: "action in [launch_job_template, launch_workflow]"}
-    - {name: inventory, label: Inventory Name or ID, type: text, visible_when: "action == launch_job_template"}
-    - {name: limit, label: Limit, type: text, visible_when: "action in [launch_job_template, launch_workflow]"}
-    - {name: job_tags, label: Job Tags, type: text, visible_when: "action == launch_job_template"}
-    - {name: skip_tags, label: Skip Tags, type: text, visible_when: "action == launch_job_template"}
-    - {name: scm_branch, label: SCM Branch, type: text, visible_when: "action == launch_job_template"}
-    - {name: job_type, label: Job Type, type: choice, choices: ["", run, check], visible_when: "action == launch_job_template"}
-    - {name: verbosity, label: Verbosity (0-5), type: integer, visible_when: "action == launch_job_template"}
-    - {name: wait_for_completion, label: Wait for Completion, type: boolean, default: true,
-       visible_when: "action in [launch_job_template, launch_workflow]"}
-
-    # monitor / review
-    - {name: job_id, label: AWX Job ID, type: integer, visible_when: "action in [monitor_job, review_job]"}
-    - {name: job_kind, label: Job Kind, type: choice, default: playbook, choices: [playbook, workflow],
-       visible_when: "action in [monitor_job, review_job]"}
-
-    # monitoring behaviour
-    - {name: poll_interval, label: Poll Interval (s), type: integer, default: 10}
-    - {name: max_wait, label: Max Wait (s, 0 = unlimited), type: integer, default: 0}
-    - {name: fail_on_failure, label: Fail Task if AWX Job Fails, type: boolean, default: true}
-    - {name: cancel_on_abort, label: Cancel AWX Job if UAC Task Cancelled, type: boolean, default: true}
-    - {name: include_stdout, label: Include Playbook Output, type: boolean, default: true}
-    - {name: max_output_lines, label: Max Output Lines, type: integer, default: 500}
+  api_level: 1.0.0
+  requires_python: ">=3.7"
+owner:
+  name: Extension Developer
+  organization: Stonebranch, Inc.
+comments: |
+  Ansible AWX: launch, monitor and review AWX / AAP job templates and workflows via the AWX REST API

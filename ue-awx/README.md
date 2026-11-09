@@ -23,15 +23,11 @@ Talks to the AWX REST API (`/api/v2`) to launch, monitor and review playbook run
 * Output includes job URL, host summary and the last N lines of playbook stdout.
 
 ## Build / install
-Uses the Stonebranch Universal Extension framework (`uemload`):
-
 ```
-pip install uemload
-ue-create-extension ...   # or copy src/ into an extension project
-uemload build             # produces dist/ue-awx-1.0.0.zip
+python build.py        # writes ue-awx-1.0.0.zip (template.json + icon + extension_archive.zip)
 ```
-Upload the resulting zip in UAC: *Services → Universal Extensions → Import*, then create a task from the "Ansible AWX" template.
+Import the zip in UAC: *Services -> Universal Templates -> Import* (or Universal Extensions), then create a task from the "Ansible AWX" template. The extension uses only the Python standard library.
 
 ## Notes
 * Required AWX permissions: Execute on the template, Read on inventories used.
-* Add an `awx.png` icon (referenced in `extension.yml`) or remove `extension_icon`.
+* The build generates a placeholder icon; replace it in `build.py` if desired.
