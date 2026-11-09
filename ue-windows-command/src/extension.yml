@@ -1,0 +1,10 @@
+extension:
+  name: ue-windows-command
+  version: 1.0.0
+  api_level: 1.0.0
+  requires_python: ">=3.7"
+owner:
+  name: Extension Developer
+  organization: Stonebranch, Inc.
+comments: |
+  Windows Command Runner: run a common Windows CLI command on a selected Windows agent via the UAC REST API
